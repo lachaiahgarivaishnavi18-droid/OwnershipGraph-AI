@@ -1,0 +1,10 @@
+{
+  "version": "synthetic-isolation-1.0",
+  "seed": 42,
+  "training_rows": 480,
+  "held_out_rows": 120,
+  "held_out_score_mean": 0.5335456203517696,
+  "held_out_score_std": 0.03940988073469889,
+  "training_data": "independent synthetic feature vectors; no crime labels",
+  "limitations": "No supervised accuracy, PR-AUC, ROC-AUC or calibration claims are possible without real validated labels. No operational validation."
+}

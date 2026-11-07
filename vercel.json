@@ -1,0 +1,29 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "flask",
+  "buildCommand": "python scripts/build_vercel.py",
+  "functions": {
+    "index.py": {
+      "maxDuration": 60,
+      "excludeFiles": "{frontend/**,public/**,.venv/**,tmp/**,output/**,notebooks/**,backend/tests/**,**/__pycache__/**}"
+    }
+  },
+  "rewrites": [
+    {"source":"/","destination":"/index.html"},
+    {"source":"/login","destination":"/index.html"},
+    {"source":"/register","destination":"/index.html"},
+    {"source":"/entities/:path*","destination":"/index.html"},
+    {"source":"/graph","destination":"/index.html"},
+    {"source":"/ubo","destination":"/index.html"},
+    {"source":"/analytics","destination":"/index.html"},
+    {"source":"/risk","destination":"/index.html"},
+    {"source":"/investigations/:path*","destination":"/index.html"},
+    {"source":"/agents","destination":"/index.html"},
+    {"source":"/assistant","destination":"/index.html"},
+    {"source":"/reports","destination":"/index.html"},
+    {"source":"/import","destination":"/index.html"},
+    {"source":"/users","destination":"/index.html"},
+    {"source":"/audit","destination":"/index.html"},
+    {"source":"/settings","destination":"/index.html"}
+  ]
+}

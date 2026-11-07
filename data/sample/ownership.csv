@@ -1,0 +1,3 @@
+owner_entity_id,owned_entity_id,ownership_percentage,control_type,valid_from,source_id,confidence
+4,11,60,OWNS,2020-01-01,1,0.8
+5,11,40,OWNS,2020-01-01,1,0.8

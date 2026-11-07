@@ -1,0 +1,13 @@
+import React,{useState,useEffect} from 'react';
+import {ArrowUpRight,LoaderCircle,AlertCircle,FileSearch,ChevronRight} from 'lucide-react';
+import {api,message} from './api';
+export function useData(url){const [data,setData]=useState(null),[error,setError]=useState(''),[version,setVersion]=useState(0);useEffect(()=>{let live=true;setError('');setData(null);api.get(url).then(r=>live&&setData(r.data)).catch(e=>live&&setError(message(e)));return()=>{live=false;};},[url,version]);return {data,error,reload:()=>setVersion(v=>v+1)};}
+export function Load({data,error,children}){if(error)return <div role="alert" className="error"><AlertCircle size={18}/>{error}</div>;if(!data)return <div className="loading"><LoaderCircle className="spin" size={20}/> Loading evidence…</div>;return children;}
+export function Badge({value}){return <span className={`badge ${String(value).toLowerCase().replaceAll(' ','-')}`}>{value}</span>;}
+export function PageHead({eyebrow='INVESTIGATION WORKSPACE',title,description,children}){return <div className="page-head"><div><div className="eyebrow">{eyebrow}</div><h1>{title}</h1><p>{description}</p></div><div className="head-actions">{children}</div></div>;}
+export function Empty({text='No records available.'}){return <div className="empty"><FileSearch size={30}/><p>{text}</p></div>;}
+export function Metric({label,value,detail,icon:Icon,tone='teal'}){return <div className="metric"><div className="metric-top"><span>{label}</span>{Icon&&<Icon size={18}/>}</div><strong>{value}</strong><div className={`metric-detail ${tone}`}><span className="tiny-dot"/>{detail}</div></div>;}
+export function Section({title,subtitle,action,children,className=''}){return <section className={`panel ${className}`}><div className="panel-head"><div><h2>{title}</h2>{subtitle&&<p>{subtitle}</p>}</div>{action}</div>{children}</section>;}
+export function Evidence({items=[]}){return <div className="evidence-list">{[...new Set(items)].map(x=><code key={x}>{x}</code>)}</div>;}
+export function Notice({children}){return <div className="notice"><AlertCircle size={17}/><span>{children}</span></div>;}
+export function Table({columns,rows,onRow}){return <div className="table-wrap"><table><thead><tr>{columns.map(c=><th key={c.key}>{c.label}</th>)}</tr></thead><tbody>{rows.map((r,i)=><tr key={r.id||i} tabIndex={onRow?0:undefined} onKeyDown={e=>{if(onRow&&(e.key==='Enter'||e.key===' ')){e.preventDefault();onRow(r);}}} onClick={()=>onRow?.(r)} className={onRow?'clickable':''}>{columns.map(c=><td key={c.key}>{c.render?c.render(r):r[c.key]??'—'}</td>)}</tr>)}</tbody></table>{rows.length===0&&<Empty/>}</div>;}

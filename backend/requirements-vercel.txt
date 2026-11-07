@@ -1,0 +1,17 @@
+# Lean cloud runtime. Experimental ML artifacts are optional and not uploaded.
+Flask>=3.1,<4
+Flask-SQLAlchemy>=3.1,<4
+Flask-JWT-Extended>=4.7,<5
+Flask-Limiter>=4,<5
+flask-cors>=6,<7
+pydantic>=2.10,<3
+networkx>=3.4,<4
+neo4j>=5.26,<7
+langgraph==0.2.53
+langchain-core==0.3.21
+langsmith==0.1.147
+reportlab>=4.4,<6
+openpyxl>=3.1,<4
+httpx>=0.28,<1
+psycopg[binary]>=3.2,<4
+alembic>=1.14,<2
